@@ -1,0 +1,99 @@
+{% extends "emp/base.html" %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg border-0 p-4" style="max-width: 500px; width: 100%;">
+        <h2 class="text-center mb-4">Register</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="form-group position-relative mb-4">
+                <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id_for_label }}" class="form-control floating-input" required>
+                <label for="{{ field.id_for_label }}" class="floating-label">{{ field.label }}</label>
+
+                {% if field.errors %}
+                <div class="text-danger small mt-1">
+                    {{ field.errors|striptags }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary w-100">
+                Register
+            </button>
+        </form>
+        <p class="text-center mt-3">
+           Already Have an Account? <a href="{% url 'loggedin' %}" class="text-primary fw-bold">Login</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- Custom CSS -->
+<style>
+    .form-group {
+        position: relative;
+    }
+
+    .floating-input {
+        width: 100%;
+        padding: 12px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+        font-size: 16px;
+        background: transparent;
+        outline: none;
+    }
+
+    .floating-label {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        padding: 0 5px;
+        color: #aaa;
+        font-size: 16px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Floating label effect on focus */
+    .floating-input:focus,
+    .floating-input:not(:placeholder-shown) {
+        border-color: #007bff;
+        box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.3);
+    }
+
+    .floating-input:focus + .floating-label,
+    .floating-input:not(:placeholder-shown) + .floating-label {
+        top: 5px;
+        font-size: 12px;
+        color: #007bff;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+        border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: scale(1.02);
+    }
+
+    .btn-primary:active {
+        background-color: #004494;
+        transform: scale(0.98);
+    }
+</style>

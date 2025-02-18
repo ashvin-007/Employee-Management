@@ -1,0 +1,51 @@
+{% extends "emp/base.html" %}
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center my-4">Testimonials</h1>
+
+    <div class="row">
+        {% for t in testi %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg border-0 testimonial-card">
+                <!-- Photo with initial rounded corners -->
+                <img src="{{ t.photo.url }}" class="card-img-top testimonial-photo" alt="{{ t.name }}" style="height: 250px; object-fit: cover;">
+
+                <div class="card-body">
+                    <!-- Testimonial Text -->
+                    <p class="card-text text-muted">{{ t.testimonial }}</p>
+                    
+                    <!-- Name & Rating -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="font-weight-bold">{{ t.name }}</h5>
+                        <span class="badge bg-warning text-dark">⭐ {{ t.rating }}/5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- Add this CSS to your base.html or a separate CSS file -->
+<style>
+    /* Hover effect on card */
+    .testimonial-card:hover {
+        transform: translateY(-5px); /* Lift the card up on hover */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    }
+    
+    /* Default rounded corners for the photo */
+    .testimonial-photo {
+        border-radius: 10px;  /* Apply rounded corners to the image */
+        transition: border-radius 0.3s ease; /* Smooth transition for radius */
+    }
+
+    /* Full circle radius on hover */
+    .testimonial-card:hover .testimonial-photo {
+        border-radius: 50%;  /* Full circle radius on hover */
+    }
+</style>

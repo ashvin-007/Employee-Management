@@ -1,0 +1,43 @@
+{% extends "emp/base.html" %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="col-6">
+        <h2 class="text-center mb-4">Update Employee</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="emp_name" class="form-label">Emp Name</label>
+                <input type="text" name='emp_name' value="{{e.emp_name}}" class="form-control" id="emp_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="emp_id" class="form-label">Emp Id</label>
+                <input type="text" name='emp_id' value="{{e.emp_id}}" class="form-control" id="emp_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="emp_phone" class="form-label">Emp Phone</label>
+                <input type="text" name='emp_phone' value="{{e.emp_phone}}" class="form-control" id="emp_phone" required>
+            </div>
+            <div class="mb-3">
+                <label for="emp_address" class="form-label">Emp Address</label>
+                <textarea class="form-control" name='emp_address' id="emp_address" rows="4" required>{{e.emp_address}}</textarea>
+   
+            </div>
+            <div class="mb-3">
+                <input type="checkbox" {%if e.emp_is_active%} checked {%endif%}  name='emp_is_active' class="form-check-input" id="emp_is_active">
+                <label for="emp_is_active" class="form-label">Emp Is Active</label>
+            </div>
+            <div class="mb-3">
+               <label for="emp_department" class="form-label">Emp Department</label>
+<select class="form-select" name="emp_department" id="emp_department" required>
+    <option value="HR" {% if e.emp_department == "HR" %}selected{% endif %}>HR</option>
+    <option value="IT" {% if e.emp_department == "IT" %}selected{% endif %}>IT</option>
+    <option value="Finance" {% if e.emp_department == "Finance" %}selected{% endif %}>Finance</option>
+    <option value="Marketing" {% if e.emp_department == "Marketing" %}selected{% endif %}>Marketing</option>
+</select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update Employee</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

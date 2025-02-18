@@ -1,0 +1,44 @@
+{% extends "emp/base.html" %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="col-6">
+        <h2 class="text-center mb-4">Add New Employee</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="emp_name" class="form-label">Emp Name</label>
+                <input type="text" name='emp_name' class="form-control" id="emp_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="emp_id" class="form-label">Emp Id</label>
+                <input type="text" name='emp_id' class="form-control" id="emp_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="emp_phone" class="form-label">Emp Phone</label>
+                <input type="text" name='emp_phone' class="form-control" id="emp_phone" required>
+            </div>
+            <div class="mb-3">
+                <label for="emp_address" class="form-label">Emp Address</label>
+                <textarea class="form-control" name='emp_address' id="emp_address" rows="4" required></textarea>
+   
+            </div>
+            <div class="mb-3">
+                <input type="checkbox" name='emp_is_active' class="form-check-input" id="emp_is_active">
+                <label for="emp_is_active" class="form-label">Emp Is Active</label>
+            </div>
+            <div class="mb-3">
+                <label for="emp_department" class="form-label">Emp Department</label>
+                <select class="form-select" name='emp_department' id="emp_department" required>
+                    <option value="" disabled selected>Select Department</option>
+                    <option value="HR">HR</option>
+                    <option value="IT">IT</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Marketing">Marketing</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

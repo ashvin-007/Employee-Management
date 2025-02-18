@@ -1,0 +1,17 @@
+# Django specific
+db.sqlite3
+*.log
+*.pot
+*.pyc
+*.pyo
+__pycache__/
+staticfiles/
+media/
+
+# Virtual environments
+venv/
+.env
+
+# Secret files
+.env
+config/settings/local.py
